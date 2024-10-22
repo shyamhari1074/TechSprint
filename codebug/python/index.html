@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Questions</title>
+    <link rel="stylesheet" href="style.css"> 
+    <script>
+        let timer; // Variable to hold the timer interval
+        let timeLeft = 200; // Set the timer for 5 minutes (300 seconds)
+
+        function startTimer() {
+            timer = setInterval(function() {
+                if (timeLeft <= 0) {
+                    clearInterval(timer);
+                    alert("Time's up! You can now leave the page.");
+                    document.getElementById("completionMessage").style.display = "block"; // Show completion message
+                    allowExit(); // Allow exit when time is up
+                } else {
+                    document.getElementById("timer").innerText = `Time left: ${timeLeft} seconds`;
+                    timeLeft -= 1;
+                }
+            }, 1000);
+        }
+
+        // Allow exit when the timer is up
+        function allowExit() {
+            window.removeEventListener('beforeunload', preventExit);
+        }
+
+        // Prevent the user from leaving the page
+        function preventExit(event) {
+            event.preventDefault();
+            event.returnValue = ''; // Display a generic message
+        }
+
+        // Request full-screen mode
+        function requestFullscreen() {
+            if (document.documentElement.requestFullscreen) {
+                document.documentElement.requestFullscreen();
+            } else if (document.documentElement.mozRequestFullScreen) { // Firefox
+                document.documentElement.mozRequestFullScreen();
+            } else if (document.documentElement.webkitRequestFullscreen) { // Chrome, Safari and Opera
+                document.documentElement.webkitRequestFullscreen();
+            } else if (document.documentElement.msRequestFullscreen) { // IE/Edge
+                document.documentElement.msRequestFullscreen();
+            }
+        }
+
+        // Start the timer and prevent exit when the page loads
+        window.onload = function() {
+            requestFullscreen(); // Request full-screen mode
+            startTimer();
+            window.addEventListener('beforeunload', preventExit);
+        };
+    </script>
+</head>
+<body>
+    <div class="container">
+    <div class="container">
+        <!-- Add this button at the beginning of the container -->
+
+
+        <h1>Java Questions</h1>
+
+<!-- Question 1: Most Frequent Character -->
+<div class="question">
+    <h2>1. Most Frequent Character</h2>
+    <p>Write a function that returns the most frequent character in a string.</p>
+    <pre>
+import java.util.HashMap;
+
+public class Main {
+    public static char mostFrequentChar(String str) {
+        HashMap<Character, Integer> frequencyMap = new HashMap<>();
+        for (char c : str.toCharArray()) {
+            if (frequencyMap.containsKey(c)) {
+                frequencyMap.put(c, frequencyMap.get(c) + 1);
+            } else {
+                frequencyMap.put(c, 1);
+            }
+        }
+
+        char mostFrequent = ' ';
+        int maxCount = 0;
+        for (char c : frequencyMap.keySet()) {
+            if (frequencyMap.get(c) > maxCount) {
+                maxCount = frequencyMap.get(c);
+                mostFrequent = c;
+            }
+        }
+        return mostFrequent;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(mostFrequentChar("hello world"));
+    }
+}
+    </pre>
+</div>
+        
+
+        <!-- Completion Message -->
+        <div id="completionMessage" style="display: none; text-align: center;">
+            <h2>Assignment Completed!</h2>
+            <img src="completed.png" alt="Completed" style="max-width: 100%; height: auto;">
+            <p>Great job! You can now leave the page.</p>
+            <button onclick="allowExit(); window.location.href='../index.html'">Finish Assignment & Back</button>
+        </div>
+    </div>
+</div>
+</body>
+</html>

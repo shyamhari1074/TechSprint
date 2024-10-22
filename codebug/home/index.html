@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programming Questions</title>
+    <link rel="stylesheet" href="./style.css"> 
+    <script>
+        function goToLanguage(language) {
+            // Request full-screen mode
+            if (document.documentElement.requestFullscreen) {
+                document.documentElement.requestFullscreen();
+            }
+
+            // Redirect to the respective language page
+            window.location.href = `../${language}/index.html`;
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Choose a Programming Language</h1>
+        <button onclick="goToLanguage('python')">Python</button>
+        <button onclick="goToLanguage('java')">Java</button>
+        <button onclick="goToLanguage('c')">C</button>
+    </div>
+</body>
+</html>
